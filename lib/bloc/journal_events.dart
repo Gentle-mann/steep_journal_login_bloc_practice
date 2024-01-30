@@ -4,6 +4,11 @@ import 'package:flutter/foundation.dart';
 abstract class JournalEvents {}
 
 @immutable
+class RegisterEvent implements JournalEvents {
+  const RegisterEvent();
+}
+
+@immutable
 class LoginEvent implements JournalEvents {
   final String email;
   final String password;

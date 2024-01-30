@@ -98,7 +98,6 @@ class LoginView extends StatelessWidget {
                     );
                   } else {
                     onPressed(emailController.text, passwordController.text);
-                    print('yo');
                   }
                 },
               ),

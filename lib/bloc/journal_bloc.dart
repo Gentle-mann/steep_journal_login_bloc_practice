@@ -14,6 +14,7 @@ class JournalBloc extends Bloc<JournalEvents, JournalState> {
     required this.loginServices,
     required this.getJournalService,
   }) : super(const JournalState.empty()) {
+    on<RegisterEvent>((event, emit) {});
     on<LoginEvent>((event, emit) async {
       emit(
         const JournalState(
@@ -39,7 +40,6 @@ class JournalBloc extends Bloc<JournalEvents, JournalState> {
       );
     });
     on<GetJournalEvent>((event, emit) async {
-      print('helo');
       emit(
         JournalState(
           isHome: false,
@@ -50,7 +50,6 @@ class JournalBloc extends Bloc<JournalEvents, JournalState> {
         ),
       );
       final token = state.loginToken;
-      print('token: ${token!.token}');
       if (token != const LoginToken.success()) {
         emit(
           JournalState(
@@ -62,7 +61,7 @@ class JournalBloc extends Bloc<JournalEvents, JournalState> {
           ),
         );
       }
-      final journals = await getJournalService.getJournals(token: token);
+      final journals = await getJournalService.getJournals(token: token!);
       emit(
         JournalState(
           isHome: true,

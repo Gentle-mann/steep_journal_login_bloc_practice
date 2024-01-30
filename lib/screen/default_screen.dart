@@ -25,7 +25,6 @@ class DefaultScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: appState.journalEntries == null
                   ? LoginView(onPressed: (email, password) {
-                      print('boy');
                       context.read<JournalBloc>().add(
                             LoginEvent(
                               email: email,
@@ -61,27 +60,15 @@ class DefaultScreen extends StatelessWidget {
             },
           );
         }
-        print(
-            'total: ${appState.isLoading == false && appState.isHome == false && appState.loginError == null && appState.loginToken == const LoginToken.success() && appState.journalEntries == null}');
-        // print('start');
-        // print('isLoading: ${appState.isLoading}');
-        // print('isHome: ${appState.isHome}');
-        // print('loginerror: ${appState.loginError}');
-        // print('entires: ${appState.journalEntries}');
-        // print('token: ${appState.loginToken.toString()}');
-        // print('istoken: ${appState.loginToken == const LoginToken.success()}');
-        // print('end');
 
         if (appState.isLoading == false &&
             appState.isHome == false &&
             appState.loginError == null &&
             appState.loginToken == const LoginToken.success() &&
             appState.journalEntries == null) {
-          print('boss');
           context.read<JournalBloc>().add(
                 const GetJournalEvent(),
               );
-          print('boss 2');
         }
       },
     );
